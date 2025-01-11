@@ -1,0 +1,28 @@
+
+
+- mở mapred-site.xml trong thư mục etc/hadoop
+
+<configuration>
+    <!-- Đặt chế độ thực thi cho MapReduce -->
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value> <!-- Sử dụng YARN -->
+    </property>
+
+    <!-- Địa chỉ của ResourceManager để quản lý MapReduce -->
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>172.30.2.147:8032</value> <!-- Địa chỉ và cổng của ResourceManager trên máy 147 -->
+    </property>
+
+    <!-- Cấu hình cho JobHistory Server (liên kết tới JobHistory Server trên máy 147) -->
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>172.30.2.147:10020</value> <!-- Cổng cho JobHistory Server -->
+    </property>
+
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>172.30.2.147:19888</value> <!-- Web UI cho JobHistory Server -->
+    </property>
+</configuration>

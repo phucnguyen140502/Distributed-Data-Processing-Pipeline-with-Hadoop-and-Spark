@@ -1,0 +1,68 @@
+-nano /opt/hadoop-3.4.0/etc/hadoop/hdfs-site.xml
+-mkdir -p /opt/hadoop-3.4.0/dfs/namenode
+-mkdir -p /opt/hadoop-3.4.0/dfs/datanode1
+-mkdir -p /opt/hadoop-3.4.0/dfs/datanode2
+
++ Datanode 1 là datanode 1 trên máy linux_ip_147
++ Datanode 2 là datanode 2 trên máy linux_ip_147
+
+<configuration>
+<!-- NameNode -->
+    <property>
+    	<name>fs.defaultFS</name>
+    	<value>hdfs://172.30.2.147:9000</value>
+    </property>
+
+    <property>
+         <name>dfs.namenode.name.dir</name>
+    	 <value>file:///opt/hadoop-3.4.0/dfs/namenode</value> <!-- Đường dẫn lưu trữ NameNode -->
+    </property>
+
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>172.30.2.147:9870</value> <!-- Địa chỉ cổng web của NameNode -->
+    </property>
+
+<!-- DataNode 1 -->
+    <property>
+    	  <name>dfs.datanode.data.dir</name>
+    	  <value>file:///opt/hadoop-3.4.0/dfs/datanode1</value> <!-- Đường dẫn lưu trữ DataNode 1 -->
+    </property>
+
+    <property>
+          <name>dfs.datanode.address</name>
+    	  <value>172.30.2.147:50010</value> <!-- Cổng DataNode 1 trên máy ip 147-->
+    </property>
+
+    <property>
+          <name>dfs.datanode.http.address</name>
+          <value>172.30.2.147:50075</value> <!-- Cổng web cho DataNode 1 trên máy ip 147-->
+    </property>
+
+    <property>
+           <name>dfs.datanode.ipc.address</name>
+           <value>172.30.2.147:50020</value> <!-- Cổng IPC cho DataNode 1 trên máy ip 147-->
+    </property>
+
+<!-- DataNode 2 -->
+    <property>
+        <name>dfs.datanode.data.dir</name>
+    	<value>file:///opt/hadoop-3.4.0/dfs/datanode2</value> <!-- Đường dẫn lưu trữ DataNode 2 -->
+    </property>
+
+    <property>
+        <name>dfs.datanode.address</name>
+        <value>172.30.2.147:50011</value> <!-- Cổng DataNode 2 trên máy ip 147-->
+    </property>
+
+    <property>
+        <name>dfs.datanode.http.address</name>
+        <value>172.30.2.147:50076</value> <!-- Cổng web cho DataNode 2 trên máy ip 147-->
+    </property>
+
+    <property>
+         <name>dfs.datanode.ipc.address</name>
+         <value>172.30.2.147:50021</value> <!-- Cổng IPC cho DataNode 2 trên máy ip 147-->
+    </property>
+</configuration>
+

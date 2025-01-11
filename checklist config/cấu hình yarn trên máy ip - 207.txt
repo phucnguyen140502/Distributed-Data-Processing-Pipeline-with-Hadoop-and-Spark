@@ -1,0 +1,32 @@
+-mkdir -p yarn/nodemanager
+
+- mở yarn-site.xml trong thư mục etc/hadoop
+
+<configuration>
+    <!-- Cấu hình cho NodeManager -->
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.working.directory</name>
+        <value>/opt/hadoop-3.4.0/yarn/nodemanager</value> <!-- Đường dẫn cho NodeManager -->
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.address</name>
+        <value>172.30.2.207:8040</value> <!-- Cổng NodeManager -->
+    </property>
+
+    <!-- Cấu hình liên kết với ResourceManager (máy IP 172.30.2.147) -->
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>172.30.2.147</value> <!-- Địa chỉ IP của ResourceManager trên máy khác -->
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>172.30.2.147:8032</value> <!-- Cổng ResourceManager để kết nối -->
+    </property>
+</configuration>

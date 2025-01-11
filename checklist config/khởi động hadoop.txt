@@ -1,0 +1,48 @@
+Step 1: Định dạng lại format
+	- hdfs namenode -format
+--> này nó sẽ giúp ta có thể định dạng lại namenode
+
+Step 2: Khởi động HDFS
+vì ta có tới 4 datanode và nên ta phải cần khởi động thủ công để có thể trỏ tới chính xác những datanode mà ta đã khai báo
+-- Datanode 1
+$HADOOP_HOME/bin/hdfs datanode -Ddfs.datanode.address=172.30.2.147:50010 -Ddfs.datanode.http.address=172.30.2.147:50075 -Ddfs.datanode.ipc.address=172.30.2.147:50020 -Ddfs.datanode.data.dir=file:///opt/hadoop-3.4.0/dfs/datanode1 &
+
+-- Datanode 2
+$HADOOP_HOME/bin/hdfs datanode -Ddfs.datanode.address=172.30.2.147:50011 -Ddfs.datanode.http.address=172.30.2.147:50076 -Ddfs.datanode.ipc.address=172.30.2.147:50021 -Ddfs.datanode.data.dir=file:///opt/hadoop-3.4.0/dfs/datanode2 &
+
+-- Datanode 3
+$HADOOP_HOME/bin/hdfs datanode \
+  -Ddfs.datanode.address=172.30.2.207:50012 \
+  -Ddfs.datanode.http.address=172.30.2.207:50077 \
+  -Ddfs.datanode.ipc.address=172.30.2.207:50022 \
+  -Ddfs.datanode.data.dir=file:///opt/hadoop-3.4.0/dfs/datanode3 &
+
+--Datanode 4
+$HADOOP_HOME/bin/hdfs datanode \
+  -Ddfs.datanode.address=172.30.2.207:50013 \
+  -Ddfs.datanode.http.address=172.30.2.207:50078 \
+  -Ddfs.datanode.ipc.address=172.30.2.207:50023 \
+  -Ddfs.datanode.data.dir=file:///opt/hadoop-3.4.0/dfs/datanode4 &
+
+--> hãy nhớ datanode nó luôn chạy có tiến trình cần phải kill tiến trình đó trước chạy hay khởi động một datanode
+- kill -9 <pid>
+
+-- đối với datanode 3 và datanode 4 thì phải cần trên server chứa cấu hình của nó phải cần cấu quyền cho user hadoopuser trước nha
+- sudo chown -R hadoopuser:hadoopuser /opt/hadoop-3.4.0
+
+Step 3: Khởi động YARN
+	- start-yarn.sh
+
+Step 4: Kiểm tra status
+	- jps
+--> nếu nó ra đủ hết các ip của kết quả sẽ hiển thị danh sách các tiến trình như NameNode, DataNode, ResourceManager, và NodeManager
+--> nếu không thì nên kiểm tra lại vì đã bị thiếu ở đâu đó rồi
+	- hdfs dfsadmin -report
+
+
+Step 5: truy cập vô giao diện Web 
+	- http://172.30.2.147:8088/cluster
+	- http://172.30.2.147:9870/dfshealth.html#tab-overview
+
+Step 6: kiểm tra các cổng đang chạy
+	- netstat -tuln

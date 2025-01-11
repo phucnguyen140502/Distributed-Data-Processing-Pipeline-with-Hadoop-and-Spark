@@ -1,0 +1,24 @@
+nhớ phải tạo ssh trên máy ip 207 luôn nha để có thể ssh key nha
+
+1.Tạo Khóa SSH (nếu chưa có):
+- su - hadoopuser
+- ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+--> giúp tạo khóa mà không cần mật khẩu
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub hadoopuser@linux-ip-147
+
+2.Thêm Khóa Công Khai vào authorized_keys:
+- cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+3. Cấu Hình Quyền Cho Thư Mục .ssh:
+- chmod 700 ~/.ssh
+- chmod 600 ~/.ssh/authorized_keys
+
+4. Kiểm Tra Kết Nối SSH:
+- ssh localhost
+- ssh 172.30.2.207
+
+với trường hợp nào bị lỗi này thì phải xài này để log vào máy khác mà không cần pass --> nhớ phải thay đổi ip sao cho phù hợp
+phải làm được lại luôn nha 2 máy phải ssh mà không cần pass
+
+cấu hình trên 2  máy cho trường localhost và cả với máy hadoop chính và phụ né

@@ -1,0 +1,79 @@
+[2024-10-05T21:18:04.298+0700] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-10-05T21:18:04.319+0700] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:12:56.655152+00:00 [queued]>
+[2024-10-05T21:18:04.332+0700] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:12:56.655152+00:00 [queued]>
+[2024-10-05T21:18:04.333+0700] {taskinstance.py:2865} INFO - Starting attempt 2 of 2
+[2024-10-05T21:18:04.361+0700] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): run_talend_job> on 2024-10-05 14:12:56.655152+00:00
+[2024-10-05T21:18:04.367+0700] {standard_task_runner.py:72} INFO - Started process 255799 to run task
+[2024-10-05T21:18:04.377+0700] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'talend_job_dag_Sync_Mysql_to_DWh_job', 'run_talend_job', 'manual__2024-10-05T14:12:56.655152+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/Sync_Mysql_to_DWh_job.py', '--cfg-path', '/tmp/tmp1awzyzn0']
+[2024-10-05T21:18:04.378+0700] {standard_task_runner.py:105} INFO - Job 41: Subtask run_talend_job
+[2024-10-05T21:18:04.462+0700] {task_command.py:467} INFO - Running <TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:12:56.655152+00:00 [running]> on host linux-ip-147
+[2024-10-05T21:18:04.597+0700] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='talend_job_dag_Sync_Mysql_to_DWh_job' AIRFLOW_CTX_TASK_ID='run_talend_job' AIRFLOW_CTX_EXECUTION_DATE='2024-10-05T14:12:56.655152+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-05T14:12:56.655152+00:00'
+[2024-10-05T21:18:04.599+0700] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-10-05T21:18:04.599+0700] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-10-05T21:18:04.600+0700] {logging_mixin.py:190} INFO - Current task name:run_talend_job state:running start_date:2024-10-05 14:18:04.319782+00:00
+[2024-10-05T21:18:04.600+0700] {logging_mixin.py:190} INFO - Dag name:talend_job_dag_Sync_Mysql_to_DWh_job and current dag run status:running
+[2024-10-05T21:18:04.600+0700] {taskinstance.py:731} INFO - ::endgroup::
+[2024-10-05T21:18:04.601+0700] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-10-05T21:18:04.602+0700] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '"sh /opt/Sync_Mysql_to_DWH_Job/run_Sync_Mysql_to_DWH_job.sh"']
+[2024-10-05T21:18:04.612+0700] {subprocess.py:86} INFO - Output:
+[2024-10-05T21:18:04.614+0700] {subprocess.py:93} INFO - /usr/bin/bash: line 1: sh /opt/Sync_Mysql_to_DWH_Job/run_Sync_Mysql_to_DWH_job.sh: No such file or directory
+[2024-10-05T21:18:04.615+0700] {subprocess.py:97} INFO - Command exited with return code 127
+[2024-10-05T21:18:04.624+0700] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/operators/bash.py", line 249, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2024-10-05T21:18:04.628+0700] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-10-05T21:18:04.629+0700] {logging_mixin.py:190} INFO - Task start:2024-10-05 14:18:04.319782+00:00 end:2024-10-05 14:18:04.627919+00:00 duration:0.308137
+[2024-10-05T21:18:04.629+0700] {logging_mixin.py:190} INFO - Task:<Task(BashOperator): run_talend_job> dag:<DAG: talend_job_dag_Sync_Mysql_to_DWh_job> dagrun:<DagRun talend_job_dag_Sync_Mysql_to_DWh_job @ 2024-10-05 14:12:56.655152+00:00: manual__2024-10-05T14:12:56.655152+00:00, state:running, queued_at: 2024-10-05 14:12:56.683192+00:00. externally triggered: True>
+[2024-10-05T21:18:04.629+0700] {logging_mixin.py:190} INFO - Failure caused by Bash command failed. The command returned a non-zero exit code 127.
+[2024-10-05T21:18:04.630+0700] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=talend_job_dag_Sync_Mysql_to_DWh_job, task_id=run_talend_job, run_id=manual__2024-10-05T14:12:56.655152+00:00, execution_date=20241005T141256, start_date=20241005T141804, end_date=20241005T141804
+[2024-10-05T21:18:04.630+0700] {taskinstance.py:1563} INFO - Executing callback at index 0: notify_failure_callback
+[2024-10-05T21:18:05.677+0700] {Sync_Mysql_to_DWh_job.py:37} INFO - Gửi thành công: {'ok': True, 'result': {'message_id': 235, 'from': {'id': 7156222811, 'is_bot': True, 'first_name': 'etlbot', 'username': 'talend_etl_bot'}, 'chat': {'id': -4560962078, 'title': 'notify_talend_etl', 'type': 'group', 'all_members_are_administrators': True}, 'date': 1728137885, 'text': 'Job Talend đã thất bại!\nTask: run_talend_job\nExecution Date: 2024-10-05 14:12:56.655152+00:00\nLỗi: Bash command failed. The command returned a non-zero exit code 127.\nThời gian bắt đầu: 2024-10-05 14:18:04.319782+00:00\nThời gian kết thúc: 2024-10-05 14:18:04.627919+00:00\nLog URL: http://localhost:8080/dags/talend_job_dag_Sync_Mysql_to_DWh_job/grid?dag_run_id=manual__2024-10-05T14%3A12%3A56.655152%2B00%3A00&task_id=run_talend_job&base_date=2024-10-05T14%3A12%3A56%2B0000&tab=logs'}}
+[2024-10-05T21:18:05.705+0700] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-10-05T21:18:05.706+0700] {standard_task_runner.py:124} ERROR - Failed to execute job 41 for task run_talend_job (Bash command failed. The command returned a non-zero exit code 127.; 255799)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/operators/bash.py", line 249, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2024-10-05T21:18:05.757+0700] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-10-05T21:18:05.801+0700] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-05T21:18:05.811+0700] {local_task_job_runner.py:245} INFO - ::endgroup::

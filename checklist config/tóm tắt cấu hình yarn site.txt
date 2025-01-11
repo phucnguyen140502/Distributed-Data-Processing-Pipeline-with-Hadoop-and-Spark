@@ -1,0 +1,23 @@
+Máy 172.30.2.147:
+
+-Chứa:
+ -1 NameNode (Quản lý metadata HDFS)
+ -2 DataNode (Lưu trữ dữ liệu trong HDFS)
+ -1 ResourceManager (Quản lý tài nguyên cho YARN)
+ - NodeManager (Chạy ứng dụng YARN trên máy này)
+Máy 172.30.2.207:
+
+-Chứa:
+ -2 DataNode (Lưu trữ dữ liệu trong HDFS)
+ - NodeManager (Chạy ứng dụng YARN trên máy này)
+
+
+Giải thích đơn giản là vầy
+
+-ResourceManager:
+ - Chỉ có trên máy chứa NameNode (172.30.2.147). Nó quản lý toàn bộ tài nguyên trong cluster.
+-NodeManager:
+ - Chạy trên cả hai máy (172.30.2.147 và 172.30.2.207).
+ - Mỗi NodeManager sẽ nhận yêu cầu từ ResourceManager và quản lý các container trên máy của nó.
+-DataNode:
+ - Chạy trên cả hai máy. Chúng lưu trữ dữ liệu và cung cấp cho NameNode thông tin về trạng thái của chúng.

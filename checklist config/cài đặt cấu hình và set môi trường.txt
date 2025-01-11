@@ -1,0 +1,25 @@
+phần này làm trên 2 máy luôn nha
+Step 1: instal java -8
+- sudo apt update
+- sudo apt install openjdk-8-jdk
+- java-version
+
+Step 2: cài hadoop trên linux
+- wget https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz
+- tar -xzf hadoop-3.4.0.tar.gz
+- mv hadoop-3.4.0 ../opt
+
+Step 3: thiết lập môi trường
+- nano ~/.bashrc
+	-# Set Java Home
+	- export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64  # Thay đổi nếu bạn sử dụng một phiên bản Java k>
+
+	-# Set Hadoop Home
+	-export HADOOP_HOME=/opt/hadoop-3.4.0
+	-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+	-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+- source ~/.bashrc
+Step 4: thiết lập Java_Home trong hadoop-env.sh
+- nano ../opt/hadoop-3.4.0/etc/hadoop/hadoop-env.sh
+- kiếm tới dòng có java_home set:
+	- JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64

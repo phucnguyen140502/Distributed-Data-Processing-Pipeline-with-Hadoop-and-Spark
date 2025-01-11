@@ -1,0 +1,29 @@
+-mapreduce.framework.name:
+ -Cả hai máy đều sử dụng YARN để quản lý các tác vụ MapReduce.
+
+-yarn.resourcemanager.address:
+ -Máy 172.30.2.147 là ResourceManager nên cổng 8032 của nó được chỉ định cho tất cả các máy kết nối (bao gồm cả 172.30.2.207).
+
+-JobHistory Server:
+ -mapreduce.jobhistory.address và mapreduce.jobhistory.webapp.address:
+    -Cả hai máy đều trỏ đến JobHistory Server chạy trên máy 172.30.2.147, nơi quản lý các tác vụ đã hoàn thành và cung cấp giao diện web để kiểm tra lịch sử nhiệm vụ.
+
+-mapreduce.jobhistory.done-dir và mapreduce.jobhistory.intermediate-done-dir:
+ -Đây là các thư mục lưu trữ các nhiệm vụ MapReduce đã hoàn thành. Chúng chỉ cần được cấu hình trên máy có JobHistory Server (tức máy 172.30.2.147
+
++giải thích vì sao lại để JobHistory Server trên máy chứa yarn.resourcemanager.address
+
+ +Chức năng của JobHistory Server:
+   +JobHistory Server chịu trách nhiệm lưu trữ thông tin về các tác vụ MapReduce đã hoàn thành (như lịch sử công việc, kết quả và các báo cáo khác). Nó không tham gia vào quá trình thực thi các công việc MapReduce. Nhiệm vụ của nó chỉ là cung cấp một nơi trung tâm để lưu trữ và truy cập thông tin về các công việc sau khi chúng hoàn thành.
+   +Vì vậy, chỉ cần một JobHistory Server duy nhất trong cụm Hadoop để quản lý và lưu trữ lịch sử cho toàn bộ các công việc. Thông thường, máy chủ này được đặt trên máy chạy ResourceManager (hoặc máy có đủ tài nguyên để quản lý dữ liệu này một cách hiệu quả)
+
+
+  +Vị trí của JobHistory Server:
+    +ResourceManager có vai trò quản lý và lập lịch cho các công việc MapReduce trong toàn bộ cụm. Vì vậy, việc đặt JobHistory Server trên cùng một máy với ResourceManager là hợp lý, giúp giảm độ trễ trong việc truy xuất thông tin từ lịch sử công việc khi cần.
+    +Máy chứa NameNode thường là máy có vai trò quản lý trung tâm, do đó thường cũng là nơi lưu trữ các dịch vụ liên quan đến quản lý và lưu trữ dữ liệu lịch sử.
+
+  +Tại sao không đặt trên các DataNode hay NodeManager:
+    +NodeManager và DataNode chỉ thực hiện các tác vụ liên quan đến lưu trữ dữ liệu và xử lý các phần công việc được phân phối từ ResourceManager. Các máy này không cần phải lưu trữ thông tin về lịch sử công việc của các tác vụ MapReduce.
+    +Nếu đặt JobHistory Server trên mỗi DataNode hoặc NodeManager, bạn sẽ tạo ra sự dư thừa không cần thiết và sẽ làm tăng độ phức tạp trong quản lý, vì chỉ cần một trung tâm lưu trữ thông tin công việc là đủ.
+    +Đặt JobHistory Server trên các máy DataNode sẽ không đem lại lợi ích và có thể gây lãng phí tài nguyên (bộ nhớ, dung lượng lưu trữ, băng thông).
+

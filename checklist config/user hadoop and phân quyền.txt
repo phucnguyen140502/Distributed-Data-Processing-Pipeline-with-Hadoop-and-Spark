@@ -1,0 +1,19 @@
+- useradd -m hadoopuser: --> tạo user
+- usermod -aG sudo hadoopuser: thêm vô nhóm sudo
+- sudo chown -R hadoopuser:hadoopuser /opt/hadoop-3.4.0
+- sudo chown -R hadoopuser:hadoopuser /opt/hadoop-3.4.0/dfs
+- sudo chown -R hadoopuser:hadoopuser /opt/hadoop-3.4.0/mapreduce
+
+-su hadoopuser
+-nano ~/.bashrc
+# Thiết lập JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+
+# Thiết lập HADOOP_HOME
+export HADOOP_HOME=/opt/hadoop-3.4.0
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+--> thêm này vào file trong quyền hadoopuser --> cũn cài biến môi trường luôn
+--> hdfs namenode -format: format lại namenode

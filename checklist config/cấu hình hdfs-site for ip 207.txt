@@ -1,0 +1,49 @@
+-nano /opt/hadoop-3.4.0/etc/hadoop/hdfs-site.xml
+-mkdir -p /opt/hadoop-3.4.0/dfs/datanode3
+-mkdir -p /opt/hadoop-3.4.0/dfs/datanode4
+
++ DataNode 1 trên máy ip 207 là DataNode 3
++ DataNode 2 trên máy ip 207 là DataNode 4
+
+<configuration>
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///opt/hadoop-3.4.0/dfs/datanode3</value> <!-- Đường dẫn lưu trữ DataNode 3 -->
+</property>
+
+<property>
+    <name>dfs.datanode.address</name>
+    <value>172.30.2.207:50012</value> <!-- Cổng DataNode 1 là cổng 3 trên máy ip 207-->
+</property>
+
+<property>
+    <name>dfs.datanode.http.address</name>
+    <value>172.30.2.207:50077</value> <!-- Cổng web cho DataNode 1 là cổng 3 trên máy ip 207-->
+</property>
+
+<property>
+    <name>dfs.datanode.ipc.address</name>
+    <value>172.30.2.207:50022</value> <!-- Cổng IPC cho DataNode 1 là cổng 3 trên máy ip 207-->
+</property>
+
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///opt/hadoop-3.4.0/dfs/datanode4</value> <!-- Đường dẫn lưu trữ DataNode 4 -->
+</property>
+
+<property>
+    <name>dfs.datanode.address</name>
+    <value>172.30.2.207:50013</value> <!-- Cổng DataNode 2 là cổng 4 trên máy ip 207-->
+</property>
+
+<property>
+    <name>dfs.datanode.http.address</name>
+    <value>172.30.2.207:50078</value> <!-- Cổng web cho DataNode 2 là cổng 4 trên máy ip 207-->
+</property>
+
+<property>
+    <name>dfs.datanode.ipc.address</name>
+    <value>172.30.2.207:50023</value> <!-- Cổng IPC cho DataNode 2 là cổng 4 trên máy ip 207-->
+</property>
+
+</configuration>

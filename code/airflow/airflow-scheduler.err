@@ -1,0 +1,62 @@
+[2024-10-05 01:48:40 +0700] [187979] [INFO] Starting gunicorn 23.0.0
+[2024-10-05 01:48:40 +0700] [187979] [INFO] Listening at: http://[::]:8793 (187979)
+[2024-10-05 01:48:40 +0700] [187979] [INFO] Using worker: sync
+[2024-10-05 01:48:40 +0700] [187980] [INFO] Booting worker with pid: 187980
+[2024-10-05 01:48:40 +0700] [187981] [INFO] Booting worker with pid: 187981
+Traceback (most recent call last):
+  File "/usr/local/bin/airflow", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/airflow/__main__.py", line 62, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/cli/commands/task_command.py", line 458, in task_run
+    _dag = get_dag(args.subdir, args.dag_id, args.read_from_db)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/cli.py", line 247, in get_dag
+    raise AirflowException(
+airflow.exceptions.AirflowException: Dag 'talend_job_dag_Sync_Mysql_to_DWh_job' could not be found; either it does not exist or it failed to parse.
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database or disk is full
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/airflow/dag_processing/processor.py", line 207, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/usr/local/lib/python3.10/dist-packages/airflow/dag_processing/processor.py", line 188, in _handle_dag_file_processing
+    result: tuple[int, int, int] = dag_file_processor.process_file(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/dag_processing/processor.py", line 942, in process_file
+    serialize_errors = DagFileProcessor.save_dag_to_db(
+  File "/usr/local/lib/python3.10/dist-packages/airflow/api_internal/internal_api_call.py", line 139, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/dag_processing/processor.py", line 982, in save_dag_to_db
+    import_errors = DagBag._sync_to_db(dags=dags, processor_subdir=dag_directory, session=session)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/dagbag.py", line 708, in _sync_to_db
+    for attempt in run_with_db_retries(logger=log):
+  File "/usr/local/lib/python3.10/dist-packages/tenacity/__init__.py", line 443, in __iter__
+    do = self.iter(retry_state=retry_state)
+  File "/usr/local/lib/python3.10/dist-packages/tenacity/__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "/usr/local/lib/python3.10/dist-packages/tenacity/__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+  File "/usr/local/lib/python3.10/dist-packages/tenacity/__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.10/dist-packages/airflow/models/dagbag.py", line 724, in _sync_to_db
+    DAG.bulk_write_to_db(dags.values(), processor

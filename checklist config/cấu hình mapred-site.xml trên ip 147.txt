@@ -1,0 +1,41 @@
+- mkdir -p /opt/hadoop-3.4.0/mapreduce/done
+- mkdir -p /opt/hadoop-3.4.0/mapreduce/intermediate
+
+- mở mapred-site.xml trong thư mục etc/hadoop
+
+
+<configuration>
+    <!-- Đặt chế độ thực thi cho MapReduce -->
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value> <!-- Sử dụng YARN để quản lý MapReduce -->
+    </property>
+
+    <!-- Địa chỉ của ResourceManager để quản lý MapReduce -->
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>172.30.2.147:8032</value> <!-- Địa chỉ và cổng của ResourceManager -->
+    </property>
+
+    <!-- Cấu hình cho JobHistory Server -->
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>172.30.2.147:10020</value> <!-- Địa chỉ và cổng của JobHistory Server -->
+    </property>
+
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>172.30.2.147:19888</value> <!-- Web UI cho JobHistory Server -->
+    </property>
+
+    <!-- Cấu hình đường dẫn làm việc cho MapReduce JobHistory -->
+    <property>
+        <name>mapreduce.jobhistory.done-dir</name>
+        <value>/opt/hadoop-3.4.0/mapreduce/done</value> <!-- Thư mục lưu trữ các job đã hoàn thành -->
+    </property>
+
+    <property>
+        <name>mapreduce.jobhistory.intermediate-done-dir</name>
+        <value>/opt/hadoop-3.4.0/mapreduce/intermediate</value> <!-- Thư mục tạm cho các job chưa hoàn thành -->
+    </property>
+</configuration>

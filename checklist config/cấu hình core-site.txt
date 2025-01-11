@@ -1,0 +1,8 @@
+mở core-site.xml
+- nano /opt/hadoop-3.4.0/etc/hadoop/core-site.xml
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://172.30.2.147:9000</value>
+    </property>
+</configuration>

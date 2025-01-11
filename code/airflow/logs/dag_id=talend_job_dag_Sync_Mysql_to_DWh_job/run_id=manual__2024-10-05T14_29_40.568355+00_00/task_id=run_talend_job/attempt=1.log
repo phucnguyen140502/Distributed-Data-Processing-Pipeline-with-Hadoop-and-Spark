@@ -1,0 +1,28 @@
+[2024-10-05T21:29:43.588+0700] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-10-05T21:29:43.608+0700] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:29:40.568355+00:00 [queued]>
+[2024-10-05T21:29:43.622+0700] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:29:40.568355+00:00 [queued]>
+[2024-10-05T21:29:43.622+0700] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2024-10-05T21:29:43.647+0700] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): run_talend_job> on 2024-10-05 14:29:40.568355+00:00
+[2024-10-05T21:29:43.654+0700] {standard_task_runner.py:72} INFO - Started process 256468 to run task
+[2024-10-05T21:29:43.662+0700] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'talend_job_dag_Sync_Mysql_to_DWh_job', 'run_talend_job', 'manual__2024-10-05T14:29:40.568355+00:00', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/Sync_Mysql_to_DWh_job.py', '--cfg-path', '/tmp/tmpmtbnx3mi']
+[2024-10-05T21:29:43.663+0700] {standard_task_runner.py:105} INFO - Job 44: Subtask run_talend_job
+[2024-10-05T21:29:43.754+0700] {task_command.py:467} INFO - Running <TaskInstance: talend_job_dag_Sync_Mysql_to_DWh_job.run_talend_job manual__2024-10-05T14:29:40.568355+00:00 [running]> on host linux-ip-147
+[2024-10-05T21:29:43.946+0700] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='talend_job_dag_Sync_Mysql_to_DWh_job' AIRFLOW_CTX_TASK_ID='run_talend_job' AIRFLOW_CTX_EXECUTION_DATE='2024-10-05T14:29:40.568355+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-05T14:29:40.568355+00:00'
+[2024-10-05T21:29:43.950+0700] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-10-05T21:29:43.950+0700] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-10-05T21:29:43.951+0700] {logging_mixin.py:190} INFO - Current task name:run_talend_job state:running start_date:2024-10-05 14:29:43.609095+00:00
+[2024-10-05T21:29:43.952+0700] {logging_mixin.py:190} INFO - Dag name:talend_job_dag_Sync_Mysql_to_DWh_job and current dag run status:running
+[2024-10-05T21:29:43.953+0700] {taskinstance.py:731} INFO - ::endgroup::
+[2024-10-05T21:29:43.956+0700] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-10-05T21:29:43.959+0700] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '"/opt/Sync_Mysql_to_DWH_Job/run_Sync_Mysql_to_DWH_job.sh"']
+[2024-10-05T21:29:43.975+0700] {subprocess.py:86} INFO - Output:
+[2024-10-05T21:29:48.868+0700] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-10-05T21:29:48.916+0700] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-10-05T21:29:48.917+0700] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=talend_job_dag_Sync_Mysql_to_DWh_job, task_id=run_talend_job, run_id=manual__2024-10-05T14:29:40.568355+00:00, execution_date=20241005T142940, start_date=20241005T142943, end_date=20241005T142948
+[2024-10-05T21:29:48.938+0700] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-10-05T21:29:48.938+0700] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-10-05T21:29:48.940+0700] {logging_mixin.py:190} INFO - Dag name:talend_job_dag_Sync_Mysql_to_DWh_job queued_at:2024-10-05 14:29:40.595318+00:00
+[2024-10-05T21:29:48.940+0700] {logging_mixin.py:190} INFO - Task hostname:linux-ip-147 operator:BashOperator
+[2024-10-05T21:29:48.991+0700] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-10-05T21:29:49.031+0700] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-10-05T21:29:49.037+0700] {local_task_job_runner.py:245} INFO - ::endgroup::
